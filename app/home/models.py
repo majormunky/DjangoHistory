@@ -20,3 +20,10 @@ class Edition(models.Model):
             pub_name=self.publication.name,
             pub_date=self.publish_date.strftime("%m-%d-%Y"),
         )
+
+
+class Page(models.Model):
+    edition = models.ForeignKey(Edition, on_delete=models.CASCADE)
+    page_num = models.IntegerField()
+    url = models.URLField(blank=True)
+    is_downloaded = models.BooleanField(default=False)
