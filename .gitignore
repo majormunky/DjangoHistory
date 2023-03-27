@@ -2,3 +2,4 @@
 
 .pyv/
 *.pyc
+.env
