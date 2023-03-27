@@ -14,3 +14,9 @@ class Edition(models.Model):
     publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
     publish_date = models.DateField()
     page_count = models.IntegerField()
+
+    def __str__(self):
+        return "{pub_name}: {pub_date}".format(
+            pub_name=self.publication.name,
+            pub_date=self.publish_date.strftime("%m-%d-%Y"),
+        )
