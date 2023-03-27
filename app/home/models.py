@@ -8,3 +8,9 @@ class Publication(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Edition(models.Model):
+    publication = models.ForeignKey(Publication, on_delete=models.CASCADE)
+    publish_date = models.DateField()
+    page_count = models.IntegerField()
