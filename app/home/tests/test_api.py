@@ -51,7 +51,14 @@ class PrivatePublicationAPITests(TestCase):
         )
         self.client.force_authenticate(self.user)
 
-    def test_auth_required(self):
+    def test_retrieve_publications(self):
         """Test auth is required to call API"""
+        create_publication()
+        create_publication()
+
+        publications = Publication.objects.all()
+        pub_serializer = PublicationSerializer(publications, many=True)
+
         res = self.client.get(PUB_URL)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data, pub_serializer.data)
