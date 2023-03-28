@@ -53,8 +53,8 @@ class PrivatePublicationAPITests(TestCase):
 
     def test_retrieve_publications(self):
         """Test auth is required to call API"""
-        create_publication()
-        create_publication()
+        create_publication(code="abc123", short_name="abc123", name="abc")
+        create_publication(code="dfe456", short_name="dfe123", name="dfe")
 
         publications = Publication.objects.all()
         pub_serializer = PublicationSerializer(publications, many=True)
