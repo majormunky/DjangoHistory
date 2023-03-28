@@ -6,6 +6,5 @@ from home.api import views
 router = DefaultRouter()
 router.register("publications", views.PublicationViewSet)
 
-app_name = "home"
 
 urlpatterns = [path("", include(router.urls))]
