@@ -9,6 +9,7 @@ from home.api.serializers import PublicationSerializer
 
 
 PUB_URL = reverse("home:publication-list")
+EDITION_URL = reverse("home:edition-list")
 
 
 def create_publication(**params):
@@ -62,3 +63,15 @@ class PrivatePublicationAPITests(TestCase):
         res = self.client.get(PUB_URL)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, pub_serializer.data)
+
+
+class PublicEditionAPITests(TestCase):
+    """Test for unauthenticated API Edition requests"""
+
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_auth_required(self):
+        """Test auth is required to call API"""
+        res = self.client.get(EDITION_URL)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
