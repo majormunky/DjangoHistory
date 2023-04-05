@@ -10,6 +10,7 @@ from home.api.serializers import PublicationSerializer
 
 PUB_URL = reverse("home:publication-list")
 EDITION_URL = reverse("home:edition-list")
+PAGE_URL = reverse("home:page-list")
 
 
 def create_publication(**params):
@@ -74,4 +75,16 @@ class PublicEditionAPITests(TestCase):
     def test_auth_required(self):
         """Test auth is required to call API"""
         res = self.client.get(EDITION_URL)
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class PublicPageAPITests(TestCase):
+    """Test for unauthenticated API Page requests"""
+
+    def setUp(self):
+        self.client = APIClient()
+
+    def test_auth_required(self):
+        """Test auth is required to call API"""
+        res = self.client.get(PAGE_URL)
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
