@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from home.models import Publication, Edition
+from home.models import Publication, Edition, Page
 from home.api import serializers
 
 
@@ -19,5 +19,14 @@ class EditionViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.EditionSerializer
     queryset = Edition.objects.all()
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+
+class PageViewSet(viewsets.ModelViewSet):
+    """Viewset for the page API"""
+
+    serializer_class = serializers.PageSerializer
+    queryset = Page.objects.all()
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
