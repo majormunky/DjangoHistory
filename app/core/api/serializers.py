@@ -5,5 +5,5 @@ from core.models import CoreUser
 class CoreUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CoreUser
-        fields = ["id", "first_name", "last_name"]
+        fields = ["id", "email", "first_name", "last_name"]
         read_only_fields = ["id"]
