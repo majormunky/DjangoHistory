@@ -2,12 +2,14 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 
+app_name = "core"
+
 urlpatterns = [
-    path('', views.index),
-    #path('accounts/login/', auth_views.login, {"template_name": "core/login.html"}),
-    path('accounts/login/', auth_views.login),
-    path('accounts/logout/', auth_views.logout),
-    #path('accounts/logout/', auth_views.logout, {"template_name": "core/logout.html"}),
+    path("", views.index),
+    # path('accounts/login/', auth_views.login, {"template_name": "core/login.html"}),
+    path("accounts/login/", auth_views.auth_login),
+    path("accounts/logout/", auth_views.auth_logout),
+    # path('accounts/logout/', auth_views.logout, {"template_name": "core/logout.html"}),
     # path('accounts/profile/', views.show_user_profile),
     # path('manage/locations/', views.manage_locations),
     # path('manage/locations/new/', views.add_location),
