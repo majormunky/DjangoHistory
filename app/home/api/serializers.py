@@ -20,3 +20,4 @@ class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
         fields = ["id", "page_num", "url", "is_downloaded"]
+        read_only_fields = ["id"]
